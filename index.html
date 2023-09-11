@@ -7,6 +7,7 @@
 </head>
 <body>
     <script>
+
         // Function 1 – getComputerChoice
         // Define function called getComputerChoice
         function getComputerChoice() {
@@ -15,23 +16,33 @@
         const randomNumber = Math.floor((Math.random() * 3) + 1);
         // Create a conditional statement — if 1, 2 and 3 assign respectively to "Rock", "Paper" or "Scissors"
         if (randomNumber === 1) {
-            return "Rock"
+            return "ROCK"
         } else if (randomNumber === 2) {
-            return "Paper"
+            return "PAPER"
         } else (randomNumber === 3)
-            return "Scissors"
+            return "SCISSORS"
         }
         
         // *potentially not needed* Store the answer in the string variable — computerSelection + // Return computerSelection
         // 
         // Function 2 - playRound (Single round)
         // Create function that takes two parameters (playerSelection, computerSelection)
-        function playRound (playerSelection, computerSelection) {
-
-        }
+        function playRound(playerSelection, computerSelection) {
+        // Call getComputerChoice function to get computerSelection
         // Create a string variable that will store playerSelection
+            const userInput = prompt("Rock, paper or scissors?");
+        // Convert to uppercase for validation purposes
+            const userInputUpper = userInput.toUpperCase();
+        // Validate initial answer from user or turn them around
+            if (userInputUpper === "ROCK" || "PAPER" || "SCISSORS") {
+                const playerSelection = userInputUpper              
+            } else {
+                alert("Please only input Rock, paper or scissors.")
+            }
+        }
+
+        console.log(playRound())
         // Prompt user "Rock, paper or Scissor?"
-        // Use camelcase converter function here to format strings for comparison 
         // Create logic for game comparison
         // If tied, no one wins
             // Alert user "It is a tie"
