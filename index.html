@@ -8,16 +8,27 @@
 <body>
     <script>
         // Function 1 – getComputerChoice
-        // Create function called getComputerChoice
-        // Create a int variable to store the choice with an initVal of 0
+        // Define function called getComputerChoice
+        function getComputerChoice() {
+        // Create a int variable to store the choice with an initVal of 0 
         // Randomly generate a whole number between 1 and 3 
+        const randomNumber = Math.floor((Math.random() * 3) + 1);
         // Create a conditional statement — if 1, 2 and 3 assign respectively to "Rock", "Paper" or "Scissors"
-        // Store the answer in the string variable — computerSelection
-        // Return computerSelection
-        // (Check with console.log())
+        if (randomNumber === 1) {
+            return "Rock"
+        } else if (randomNumber === 2) {
+            return "Paper"
+        } else (randomNumber === 3)
+            return "Scissors"
+        }
+        
+        // *potentially not needed* Store the answer in the string variable — computerSelection + // Return computerSelection
         // 
         // Function 2 - playRound (Single round)
         // Create function that takes two parameters (playerSelection, computerSelection)
+        function playRound (playerSelection, computerSelection) {
+
+        }
         // Create a string variable that will store playerSelection
         // Prompt user "Rock, paper or Scissor?"
         // Use camelcase converter function here to format strings for comparison 
@@ -28,16 +39,21 @@
         // If Paper vs Scissors = Scissors wins
         // If Rock vs Scissors = Rock wins
         // Compare playerSelection vs computerSelection
-        // If 
-        // 
-        // Return a string that declares the winner of the round
-        // Message along the lines of "You Lose! Paper beats Rock"
+        // Create int variable called playersScore and another called computersScore
+        // If playerSelection beats computerSelection, add 1 to playersScore and declare winner and current score
+        // If computerSelection beats playerSelection, add 1 to computersScore and declare winner and current score
+        // If tie, skip adding 1 to either variable
+        // Return result at the end
         // 
         // Note: playerSelection parameter must be case-insensitive
         //
         // Function 3 – game()
         // Use the previous function inside of this one to player a 5 round game that keeps score 
-        // Report a winner or loser at the end
+        // Each time playRound is complete, add 1 to count 
+        // When count === 1, compare playersScore and computersScore
+        // If computersScore is larger than playersScore — Alert "You lose, better luck next time"
+        // If playersScore is larger than computersScore — Alert "Well done, you win"
+        // Reset the counter to 0
         //
         //
         //
