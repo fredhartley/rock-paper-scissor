@@ -11,10 +11,10 @@
         // Function 1 – getComputerChoice
         // Define function called getComputerChoice
         function getComputerChoice() {
-        // Create a int variable to store the choice with an initVal of 0 
+        // Create a int variable to store the choice with an initVal of null 
         // Randomly generate a whole number between 1 and 3 
         const randomNumber = Math.floor((Math.random() * 3) + 1);
-        // Create a conditional statement — if 1, 2 and 3 assign respectively to "Rock", "Paper" or "Scissors"
+        // Create a conditional statement — if 1, 2 and 3 assign respectively to "ROCK", "PAPER" or "SCISSORS"
         if (randomNumber === 1) {
             return "ROCK"
         } else if (randomNumber === 2) {
@@ -22,27 +22,53 @@
         } else (randomNumber === 3)
             return "SCISSORS"
         }
-        
-        // *potentially not needed* Store the answer in the string variable — computerSelection + // Return computerSelection
-        // 
-        // Function 2 - playRound (Single round)
-        // Create function that takes two parameters (playerSelection, computerSelection)
-        function playRound(playerSelection, computerSelection) {
-        // Call getComputerChoice function to get computerSelection
-        // Create a string variable that will store playerSelection
+        // Store computer's random answer in computerSelection variable
+        const computerSelection = getComputerChoice();
+
+        function getPlayerChoice() {
+            // Create a string variable that will store playerSelection
             const userInput = prompt("Rock, paper or scissors?");
-        // Convert to uppercase for validation purposes
+            // Convert to uppercase for validation purposes
             const userInputUpper = userInput.toUpperCase();
-        // Validate initial answer from user or turn them around
-            if (userInputUpper === "ROCK" || "PAPER" || "SCISSORS") {
-                const playerSelection = userInputUpper              
-            } else {
-                alert("Please only input Rock, paper or scissors.")
+            // Validate initial answer from user and return answer or remind them to only input correct strings
+            if (userInputUpper === "ROCK" || 
+                userInputUpper === "PAPER" || 
+                userInputUpper === "SCISSORS") {
+                return userInputUpper
+            }   else {
+                alert("Please only input rock, paper or scissors.")
             }
         }
 
-        console.log(playRound())
-        // Prompt user "Rock, paper or Scissor?"
+        // Store players's answer in playerSelection variable
+        const playerSelection = getPlayerChoice();
+
+        function playRound(playerSelection, computerSelection) {    
+            if (playerSelection === computerSelection) {
+            alert("It is a tie.")
+        }   else if ((playerSelection === "PAPER" && computerSelection === "ROCK") || 
+                     (playerSelection === "ROCK" && computerSelection === "SCISSORS") ||
+                     (playerSelection === "SCISSORS" && computerSelection === "PAPER")) {
+                    alert("Player wins.")
+        }   else if ((computerSelection === "PAPER" && playerSelection === "ROCK") || 
+                     (computerSelection === "ROCK" && playerSelection === "SCISSORS") ||
+                     (computerSelection === "SCISSORS" && playerSelection === "PAPER")) {
+                    alert("Player wins.")
+        
+        }   else {
+            alert("No input.")        
+        }   
+        } 
+        
+        console.log(playerSelection)
+        console.log(computerSelection)
+
+        console.log(playRound(playerSelection, computerSelection))
+
+
+        // *potentially not needed* Store the answer in the string variable — computerSelection + // Return computerSelection
+        // 
+        // Function 2 - playRound (Single round)
         // Create logic for game comparison
         // If tied, no one wins
             // Alert user "It is a tie"
