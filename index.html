@@ -8,6 +8,10 @@
 <body>
     <script>
 
+        // Counter for score 
+        let playerScore = 0
+        let computerScore = 0
+
         // Function 1 – getComputerChoice
         // Define function called getComputerChoice
         function getComputerChoice() {
@@ -49,23 +53,28 @@
         }   else if ((playerSelection === "PAPER" && computerSelection === "ROCK") || 
                      (playerSelection === "ROCK" && computerSelection === "SCISSORS") ||
                      (playerSelection === "SCISSORS" && computerSelection === "PAPER")) {
-                    alert("Player wins.")
+                    playerScore++ 
+                    alert(`Player wins. Player ${playerScore} - Computer ${computerScore}`)
         }   else if ((computerSelection === "PAPER" && playerSelection === "ROCK") || 
                      (computerSelection === "ROCK" && playerSelection === "SCISSORS") ||
                      (computerSelection === "SCISSORS" && playerSelection === "PAPER")) {
-                    alert("Player wins.")
-        
+                    computerScore++
+                    alert(`Computer wins. Computer ${computerScore} - Player ${playerScore}`)
         }   else {
-            alert("No input.")        
+            alert("No contest.")        
         }   
         } 
         
         console.log(playerSelection)
         console.log(computerSelection)
 
-        console.log(playRound(playerSelection, computerSelection))
+        console.log(game())
 
-
+        function game() {
+            for (let i = 0; i <= 5; i++) {
+                playRound()
+            }
+        }
         // *potentially not needed* Store the answer in the string variable — computerSelection + // Return computerSelection
         // 
         // Function 2 - playRound (Single round)
