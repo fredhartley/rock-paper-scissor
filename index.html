@@ -9,26 +9,27 @@
     <script>
 
         // Counter for score 
-        let playerScore = 0
-        let computerScore = 0
+        let playerScore = 0;
+        let computerScore = 0;
+        let roundNumber = 0;
 
         // Function 1 – getComputerChoice
         // Define function called getComputerChoice
         function getComputerChoice() {
         // Create a int variable to store the choice with an initVal of null 
         // Randomly generate a whole number between 1 and 3 
-        const randomNumber = Math.floor((Math.random() * 3) + 1);
+            let randomNumber = Math.floor((Math.random() * 3) + 1);
         // Create a conditional statement — if 1, 2 and 3 assign respectively to "ROCK", "PAPER" or "SCISSORS"
-        if (randomNumber === 1) {
-            return "ROCK"
-        } else if (randomNumber === 2) {
-            return "PAPER"
-        } else (randomNumber === 3)
-            return "SCISSORS"
+            if (randomNumber === 1) {
+                return "ROCK";
+            } else if (randomNumber === 2) {
+                return "PAPER";
+            } else
+                return "SCISSORS";
         }
-        // Store computer's random answer in computerSelection variable
-        const computerSelection = getComputerChoice();
 
+        // Function 2 – getPlayerChoice
+        // Define function called getPlayerChoice
         function getPlayerChoice() {
             // Create a string variable that will store playerSelection
             const userInput = prompt("Rock, paper or scissors?");
@@ -38,72 +39,67 @@
             if (userInputUpper === "ROCK" || 
                 userInputUpper === "PAPER" || 
                 userInputUpper === "SCISSORS") {
-                return userInputUpper
+                return userInputUpper;
             }   else {
-                alert("Please only input rock, paper or scissors.")
+                alert("Input rock, paper or scissors.");
+            // Recall the function if the incorrect input is made
+                return getPlayerChoice();
             }
         }
 
-        // Store players's answer in playerSelection variable
-        const playerSelection = getPlayerChoice();
-
-        function playRound(playerSelection, computerSelection) {    
+        // Function 3 — playRound
+        // Define function called playRound
+        function playRound(playerSelection, computerSelection) {   
+            // Compare playerSelection vs computerSelection 
+            // If tied, no one wins
             if (playerSelection === computerSelection) {
-            alert("It is a tie.")
+            alert(`It is a tie. Computer ${computerScore} - Player ${playerScore}`); 
+            // Set various different scenarios of player winning and add 1 to score
         }   else if ((playerSelection === "PAPER" && computerSelection === "ROCK") || 
                      (playerSelection === "ROCK" && computerSelection === "SCISSORS") ||
                      (playerSelection === "SCISSORS" && computerSelection === "PAPER")) {
-                    playerScore++ 
-                    alert(`Player wins. Player ${playerScore} - Computer ${computerScore}`)
-        }   else if ((computerSelection === "PAPER" && playerSelection === "ROCK") || 
-                     (computerSelection === "ROCK" && playerSelection === "SCISSORS") ||
-                     (computerSelection === "SCISSORS" && playerSelection === "PAPER")) {
-                    computerScore++
-                    alert(`Computer wins. Computer ${computerScore} - Player ${playerScore}`)
+                    playerScore++; 
+                    alert(`Player wins. Player ${playerScore} - Computer ${computerScore}`);
+            // Any other possibility leaves to computer winning so add 1 to score
         }   else {
-            alert("No contest.")        
+                    computerScore++;
+                    alert(`Computer wins. Computer ${computerScore} - Player ${playerScore}`);  
         }   
         } 
-        
-        console.log(playerSelection)
-        console.log(computerSelection)
 
-        console.log(game())
-
+        // Function 4 – game
+        // Define function called game
         function game() {
-            for (let i = 0; i <= 5; i++) {
-                playRound()
+            // Play 5 rounds
+            while (roundNumber < 5) {
+                // Store computer's random answer in computerSelection variable
+                let computerSelection = getComputerChoice();
+                // Store players's answer in playerSelection variable
+                let playerSelection = getPlayerChoice();
+                // Call playRound
+                playRound(playerSelection, computerSelection);
+                // Increment roundNumber
+                roundNumber++;
             }
-        }
-        // *potentially not needed* Store the answer in the string variable — computerSelection + // Return computerSelection
-        // 
-        // Function 2 - playRound (Single round)
-        // Create logic for game comparison
-        // If tied, no one wins
-            // Alert user "It is a tie"
-        // If Rock vs Paper = Paper wins
-        // If Paper vs Scissors = Scissors wins
-        // If Rock vs Scissors = Rock wins
-        // Compare playerSelection vs computerSelection
-        // Create int variable called playersScore and another called computersScore
-        // If playerSelection beats computerSelection, add 1 to playersScore and declare winner and current score
-        // If computerSelection beats playerSelection, add 1 to computersScore and declare winner and current score
-        // If tie, skip adding 1 to either variable
-        // Return result at the end
-        // 
-        // Note: playerSelection parameter must be case-insensitive
-        //
-        // Function 3 – game()
-        // Use the previous function inside of this one to player a 5 round game that keeps score 
-        // Each time playRound is complete, add 1 to count 
-        // When count === 1, compare playersScore and computersScore
-        // If computersScore is larger than playersScore — Alert "You lose, better luck next time"
-        // If playersScore is larger than computersScore — Alert "Well done, you win"
-        // Reset the counter to 0
-        //
-        //
-        //
-        //
+            // Once 5 rounds are complete, show playersScore and computersScore
+            if (roundNumber === 5) {
+                alert(`Final Score: Player ${playerScore} - Computer ${computerScore}`);
+            // If player's score is bigger, alert "You win"
+            if (playerScore > computerScore) {
+                alert("You win");
+            // If player's score is smaller, alert "You lose"
+            } else if (playerScore < computerScore) {
+                alert("You lose");
+            // Anything else has to be a tie
+            } else {
+                alert("It is a tie.");
+            }
+            }
+            }
+        
+        // Call the game function (Remember this!!)
+        game()
+        
     </script>
 </body>
 </html>
