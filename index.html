@@ -12,6 +12,7 @@
         let playerScore = 0;
         let computerScore = 0;
         let roundNumber = 0;
+        let playerSelection;
 
         // Function 1 – getComputerChoice
         // Define function called getComputerChoice
@@ -28,10 +29,10 @@
                 return "SCISSORS";
         }
 
-        // Function 2 – getPlayerChoice
-        // Define function called getPlayerChoice
-        function getPlayerChoice() {
-            // Create a string variable that will store playerSelection
+
+        // Function 2 — playRound
+        // Define function called playRound
+        function playRound(playerSelection, computerSelection) { 
             const userInput = prompt("Rock, paper or scissors?");
             // Convert to uppercase for validation purposes
             const userInputUpper = userInput.toUpperCase();
@@ -39,17 +40,12 @@
             if (userInputUpper === "ROCK" || 
                 userInputUpper === "PAPER" || 
                 userInputUpper === "SCISSORS") {
-                return userInputUpper;
+                playerSelection = userInputUpper;
             }   else {
                 alert("Input rock, paper or scissors.");
             // Recall the function if the incorrect input is made
-                return getPlayerChoice();
-            }
-        }
-
-        // Function 3 — playRound
-        // Define function called playRound
-        function playRound(playerSelection, computerSelection) {   
+                return playRound();
+            }  
             // Compare playerSelection vs computerSelection 
             // If tied, no one wins
             if (playerSelection === computerSelection) {
@@ -63,19 +59,17 @@
             // Any other possibility leaves to computer winning so add 1 to score
         }   else {
                     computerScore++;
-                    alert(`Computer wins. Computer ${computerScore} - Player ${playerScore}`);  
+                    alert(`Computer wins. Player ${playerScore} - Computer ${computerScore}`);  
         }   
         } 
 
-        // Function 4 – game
+        // Function 3 – game
         // Define function called game
         function game() {
             // Play 5 rounds
             while (roundNumber < 5) {
                 // Store computer's random answer in computerSelection variable
                 let computerSelection = getComputerChoice();
-                // Store players's answer in playerSelection variable
-                let playerSelection = getPlayerChoice();
                 // Call playRound
                 playRound(playerSelection, computerSelection);
                 // Increment roundNumber
@@ -86,13 +80,13 @@
                 alert(`Final Score: Player ${playerScore} - Computer ${computerScore}`);
             // If player's score is bigger, alert "You win"
             if (playerScore > computerScore) {
-                alert("You win");
+                alert("You win.");
             // If player's score is smaller, alert "You lose"
             } else if (playerScore < computerScore) {
-                alert("You lose");
+                alert("You lose.");
             // Anything else has to be a tie
             } else {
-                alert("It is a tie.");
+                alert("It's a tie.");
             }
             }
             }
