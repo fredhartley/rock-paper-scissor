@@ -1,0 +1,7 @@
+
+img {
+    transition: transform .5s ease-in-out;
+  }
+  img:hover {
+    transform: rotate(5deg);
+  }

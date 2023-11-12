@@ -3,97 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <script>
+    <h1>Welcome to RPS Battle!</h1>
+    <p>
+        Get ready to dive into the world of chance and unpredictability with our digital rendition of the classic Rock, Paper, Scissors game. 
+        RPS Battle is the ultimate destination for those who believe in the power of luck and the thrill of uncertain outcomes. 
+        Are you feeling lucky?
+    </p>
 
-        // Counter for score 
-        let playerScore = 0;
-        let computerScore = 0;
-        let roundNumber = 0;
-        let playerSelection;
+    <h2>How to Play:</h2>
+    <ul>
+        <li><strong>1. Choose Your Weapon:</strong> Click on your preferred choice - Rock, Paper, or Scissors. 
+            Will you go for the sturdy rock, the versatile paper, or the sharp scissors?
+        </li>
+        <li><strong>2. Pure Random Fun:</strong> Embrace the unpredictability of Rock, Paper, Scissors. 
+            No overthinking, just pure spontaneous fun as you test your luck against our computer opponent.
+        </li>
+        <li><strong>3. Quick Wins, Quick Losses:</strong> In a rush? No worries! RPS Battle offers lightning-fast rounds, 
+            so you can experience the thrill of victory or the sting of defeat in a matter of seconds.
+        </li>
+    </ul>
 
-        // Function 1 – getComputerChoice
-        // Define function called getComputerChoice
-        function getComputerChoice() {
-        // Create a int variable to store the choice with an initVal of null 
-        // Randomly generate a whole number between 1 and 3 
-            let randomNumber = Math.floor((Math.random() * 3) + 1);
-        // Create a conditional statement — if 1, 2 and 3 assign respectively to "ROCK", "PAPER" or "SCISSORS"
-            if (randomNumber === 1) {
-                return "ROCK";
-            } else if (randomNumber === 2) {
-                return "PAPER";
-            } else
-                return "SCISSORS";
-        }
+    <h2>Make your choice.</h2>
 
+    <img id="rock-pic" src="images/rock-cropped.png" alt="A red stylised picture of a rock">
+    <img id="paper-pic" src="images/paper-cropped.png" alt="A red stylised picture of a piece of paper">
+    <img id="scissors-pic" src="images/scissors-cropped.png" alt="A red stylised picture of a pair of scissors">
 
-        // Function 2 — playRound
-        // Define function called playRound
-        function playRound(playerSelection, computerSelection) { 
-            const userInput = prompt("Rock, paper or scissors?");
-            // Convert to uppercase for validation purposes
-            const userInputUpper = userInput.toUpperCase();
-            // Validate initial answer from user and return answer or remind them to only input correct strings
-            if (userInputUpper === "ROCK" || 
-                userInputUpper === "PAPER" || 
-                userInputUpper === "SCISSORS") {
-                playerSelection = userInputUpper;
-            }   else {
-                alert("Input rock, paper or scissors.");
-            // Recall the function if the incorrect input is made
-                return playRound();
-            }  
-            // Compare playerSelection vs computerSelection 
-            // If tied, no one wins
-            if (playerSelection === computerSelection) {
-            alert(`It is a tie. Computer ${computerScore} - Player ${playerScore}`); 
-            // Set various different scenarios of player winning and add 1 to score
-        }   else if ((playerSelection === "PAPER" && computerSelection === "ROCK") || 
-                     (playerSelection === "ROCK" && computerSelection === "SCISSORS") ||
-                     (playerSelection === "SCISSORS" && computerSelection === "PAPER")) {
-                    playerScore++; 
-                    alert(`Player wins. Player ${playerScore} - Computer ${computerScore}`);
-            // Any other possibility leaves to computer winning so add 1 to score
-        }   else {
-                    computerScore++;
-                    alert(`Computer wins. Player ${playerScore} - Computer ${computerScore}`);  
-        }   
-        } 
-
-        // Function 3 – game
-        // Define function called game
-        function game() {
-            // Play 5 rounds
-            while (roundNumber < 5) {
-                // Store computer's random answer in computerSelection variable
-                let computerSelection = getComputerChoice();
-                // Call playRound
-                playRound(playerSelection, computerSelection);
-                // Increment roundNumber
-                roundNumber++;
-            }
-            // Once 5 rounds are complete, show playersScore and computersScore
-            if (roundNumber === 5) {
-                alert(`Final Score: Player ${playerScore} - Computer ${computerScore}`);
-            // If player's score is bigger, alert "You win"
-            if (playerScore > computerScore) {
-                alert("You win.");
-            // If player's score is smaller, alert "You lose"
-            } else if (playerScore < computerScore) {
-                alert("You lose.");
-            // Anything else has to be a tie
-            } else {
-                alert("It's a tie.");
-            }
-            }
-            }
-        
-        // Call the game function (Remember this!!)
-        game()
-        
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
