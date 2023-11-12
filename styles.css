@@ -1,7 +1,41 @@
+html, body {
+  height: 100%;
+}
+
+html {
+  display: table;
+  margin: auto;
+}
+
+body {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+body {
+    background-color: #f6e8bf;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
+    width: 500px;
+  }
+  
+  h1 {
+    color: #333;
+  }
 
 img {
     transition: transform .5s ease-in-out;
+    width: 100px;
+    padding: 15px;
   }
   img:hover {
     transform: rotate(5deg);
+  }
+
+  p {
+    font-size: large;
+  }
+
+  span {
+    font-size: larger;
   }
