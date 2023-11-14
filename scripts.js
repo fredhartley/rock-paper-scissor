@@ -1,3 +1,33 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const removeButton = document.getElementById("removeButton");
+    const titleText = document.getElementById("titleText");
+    const introDiv = document.getElementById("introDiv");
+    const introParaOne = document.createElement("p");
+    const nextBtn = document.createElement("button");
+    const imgStageOne = document.createElement("img");
+
+    introParaOne.textContent = "The year is 1933, in the frosty grip of a Soviet winter, desperation and hunger clawed at the hearts of the people. You, a humble soul driven by the instinct to protect your family, found yourself on the wrong side of the law after stealing a single loaf of bread from the desolate bakery. The Soviet famine had spared no one, and your family's survival depended on that stolen sustenance.";
+    nextBtn.textContent = "Next";
+    imgStageOne.src = "images/stage-one-img.jpeg";
+    imgStageOne.alt = "An illustration of people pleading for bread from a stand in Russia";
+
+    removeButton.addEventListener("click", function() {
+        titleText.remove();
+        removeButton.remove();
+        introDiv.appendChild(imgStageOne);
+        introDiv.appendChild(introParaOne);
+        introDiv.appendChild(nextBtn);
+    });
+});
+
+
+
+
+
+
+
+
+
 // Code for game mechanics
 // Counter for score 
         let playerScore = 0;
