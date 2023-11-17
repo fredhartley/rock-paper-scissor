@@ -28,10 +28,32 @@ document.addEventListener("DOMContentLoaded", function() {
             currentStage++;
             console.log(currentStage);
         } else if (currentStage === 3) {
+            startButton.textContent = "Begin";
             storyText.textContent = "The chilling wind whipped through the desolate streets as you reluctantly agreed, knowing that the stakes were life and death. The corrupt officer grinned, the icy glint in his eye reflecting the stark reality of your situation.";
             imageReplace(stageImg, "images/stage-three-img.jpeg", "A illustration of two hands aggressively interlocking on a red background.");
             currentStage++;
             console.log(currentStage);
+        }
+        else if (currentStage === 4) {
+            stageImg.remove();
+            storyText.remove();
+            startButton.remove();
+            const h2Text = document.createElement("h2");
+            const rockPic = document.createElement("img"); 
+            const paperPic = document.createElement("img"); 
+            const scissorsPic = document.createElement("img"); 
+
+            h2Text.textContent = "Make your choice.";
+            h2Text.style.color = "#003049";
+            imageReplace(rockPic, "images/rock-cropped.png", "A red stylised picture of a rock");
+            imageReplace(paperPic, "images/paper-cropped.png", "A red stylised picture of a piece of paper");
+            imageReplace(scissorsPic, "images/scissors-cropped.png", "A red stylised picture of a pair of scissors");
+
+            rockPic.id = "rock-pic";
+            paperPic.id = "paper-pic";
+            scissorsPic.id = "scissors-pic";
+
+            document.getElementById("introDiv").append(h2Text, rockPic, paperPic, scissorsPic);
         }
     })
 }

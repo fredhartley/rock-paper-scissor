@@ -1,4 +1,4 @@
-/* html, body {
+html, body {
   height: 100%;
 }
 
@@ -11,15 +11,14 @@ html {
 body {
   display: table-cell;
   vertical-align: middle;
-} */
+}
 
 body {
   background-image: url(images/hands-background.png);
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: 'Poppins', sans-serif;
   }
   
 #introDiv {
-  border: 1px solid;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -29,22 +28,36 @@ body {
 }
 
   h1 {
-    color: white;
+    color: #003049;
+    font-weight: 900;
   }
 
-img #rock-pic, #paper-pic, #scissors-pic {
+button {
+  font-family: 'Kanit', sans-serif;
+  font-size: 1.2em;
+}
+
+#rock-pic, #paper-pic, #scissors-pic {
     transition: transform .5s ease-in-out;
     width: 100px;
-    padding: 15px;
+    padding: 25px;
+    border-radius: 18%;
   }
-  img #rock-pic, #paper-pic, #scissors-pic:hover {
+  #rock-pic:hover,  #paper-pic:hover, #scissors-pic:hover {
     transform: rotate(5deg);
+  }
+
+  #stageImg {
+    width: 300px;
+    padding: 15px;
   }
 
   p {
     font-size: large;
+    color: #003049;
   }
 
   span {
     font-size: larger;
+    color: #003049;
   }
