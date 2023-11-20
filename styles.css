@@ -1,12 +1,14 @@
-html, body {
-  height: 100%;
-}
 
+
+/* html, body {
+  height: 100%;
+} */
+/* 
 html {
   
   display: table;
   margin: auto;
-}
+} */
 
 body {
   display: table-cell;
@@ -14,7 +16,6 @@ body {
 }
 
 body {
-  background-image: url(images/hands-background.png);
   font-family: 'Poppins', sans-serif;
   }
   
@@ -25,6 +26,8 @@ body {
   transform: translate(-50%, -50%);
   padding: 10px;
   text-align: center;
+  min-width: 500px;
+  max-width: 560px;
 }
 
   h1 {
