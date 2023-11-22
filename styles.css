@@ -19,6 +19,7 @@ h1 {
   font-family: 'Porter Sans Block', monospace;
   font-size: 2.5em;
   margin: 0;
+  padding-top: 10px;
 }
 
 button {
@@ -96,7 +97,9 @@ button {
 
 hr {
   width: 90%;
-}
+  color: black;
+  border: black 0.2px solid;
+  }
 
 #blackDiv {
   background-color: black;
@@ -113,12 +116,30 @@ hr {
 }
 
 #blackDiv #storyText {
-  padding: 10px 40px;
+  padding: 30px 250px;
 }
 
 #footerText {
   padding: 10px;
 }
+
+#imageDiv {
+  display: flex;
+  align-items: flex-end;
+}
+
+#rock-pic, #paper-pic, #scissors-pic {
+  transition: transform .5s ease-in-out;
+  width: 130px;
+  padding: 25px;
+  border-radius: 18%;
+}
+#rock-pic:hover,  #paper-pic:hover, #scissors-pic:hover {
+  transform: rotate(5deg);
+}
+
+
+
 
 /* Old CSS */
 /* html, body {

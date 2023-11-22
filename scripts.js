@@ -1,3 +1,11 @@
+// Note To Do list
+// Organise styles in CSS. Remove from JS where possible to enable ease of future CSS alterations.
+// Add audio
+// Mobile responsive design (title needs to drop font size)
+// More care with how everything is styled. Padding, flex-shrink etc.
+// Use more precise and industry standard naming conventions
+
+
 // create variable for current stage
 let currentStage = 1;
 
@@ -32,33 +40,38 @@ document.addEventListener("DOMContentLoaded", function() {
             introDiv.appendChild(footerText);
             blackDiv.appendChild(storyText);
             blackDiv.appendChild(startButton);
-            storyText.textContent = "In the frosty grip of a Soviet winter, desperation and hunger clawed at the hearts of the people." + "\n\n" + "You, a humble soul driven by the instinct to protect your family, found yourself on the wrong side of the law after stealing a single loaf of bread from the local bakery. ";
+            storyText.innerHTML = "In the frosty grip of a Soviet winter, desperation and hunger clawed at the hearts of the people. <br><br>You, a humble soul driven by the instinct to protect your family, found yourself on the wrong side of the law after stealing a single loaf of bread from the local bakery. ";
             frontButton.textContent = "Next";
             currentStage++;
             console.log(currentStage);
         } else if (currentStage === 2) {
-            storyText.textContent = "Enter the stage, a local corrupt police officer, a man who reveled in the misfortune of others. He caught you red-handed, with the stolen bread as damning evidence. Instead of turning you in immediately, he presented a sinister proposition. 'Beat me at a game of Rock, Paper, Scissors, and I'll turn a blind eye to your transgressions. Fail, and you and your family face the firing squad.'";
+            storyText.innerHTML = "A local sadistic police officer, Officer Raskalov, caught you red-handed, with the stolen bread as damning evidence. Instead of turning you in immediately, he presented a sinister proposition. <br><br>'Beat me at a game of Rock, Paper, Scissors, and I'll turn a blind eye to your transgressions. Fail, and you and your family face the firing squad.'";
             currentStage++;
             console.log(currentStage);
         } else if (currentStage === 3) {
-            startButton.textContent = "Begin";
-            storyText.textContent = "The chilling wind whipped through the desolate streets as you reluctantly agreed, knowing that the stakes were life and death. The corrupt officer grinned, the icy glint in his eye reflecting the stark reality of your situation.";
+            frontButton.textContent = "Begin";
+            storyText.innerHTML = "The chilling wind whipped through the desolate streets as you reluctantly agreed, knowing that the stakes were life and death. <br><br>Officer Raskalov grinned, the icy glint in his eye reflecting the stark reality of your situation.";
             currentStage++;
             console.log(currentStage);
         } else if (currentStage === 4) {
-            stageImg.remove();
             storyText.remove();
             startButton.remove();
-            const h2Text = document.createElement("h2");
+            const displayRound = document.createElement("h2");
+            const choiceText = document.createElement("span");
             const resultsText = document.createElement("span");
             const rockPic = document.createElement("img"); 
             const paperPic = document.createElement("img"); 
             const scissorsPic = document.createElement("img");
             const imageDiv = document.createElement("div");
             
-            h2Text.textContent = "Make your choice.";
-            h2Text.style.color = "#003049";
+            imageDiv.id = "imageDiv";
+            displayRound.textContent = "Round " + (roundNumber + 1);
+            choiceText.textContent = "Make your choice.";
+            displayRound.style.color = "#EFE9DB";
+            choiceText.style.color = "#EFE9DB";
+            resultsText.style.color = "#EFE9DB"; 
             resultsText.style.padding = "10px";
+            document.body.style.backgroundColor = "#FE674F";
             imageReplace(rockPic, "images/rock-cropped.png", "A red stylised picture of a rock");
             imageReplace(paperPic, "images/paper-cropped.png", "A red stylised picture of a piece of paper");
             imageReplace(scissorsPic, "images/scissors-cropped.png", "A red stylised picture of a pair of scissors");
@@ -68,11 +81,9 @@ document.addEventListener("DOMContentLoaded", function() {
             scissorsPic.id = "scissors-pic";
             resultsText.id = "resultsText";
 
-            document.getElementById("introDiv").append(h2Text, resultsText, imageDiv);
+            blackDiv.append(displayRound,choiceText, resultsText, imageDiv);
             imageDiv.append(rockPic, paperPic, scissorsPic);
             currentStage++;
-        } else {
-            
         }
     })
 }
