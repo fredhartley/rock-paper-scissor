@@ -1,5 +1,126 @@
 
+@font-face {
+  font-family: 'Porter Sans Block';
+  src: url(fonts/porter_sans_block/porter-sans-inline-block-webfont.woff) format(woff),
+       url(fonts/porter_sans_block/porter-sans-inline-block-webfont.ttf) format(truetype);
+}
 
+body {
+  font-family: 'Roboto Mono', monospace;
+  background-color: #EFE9DB;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+h1 {
+  font-family: 'Porter Sans Block', monospace;
+  font-size: 2.5em;
+  margin: 0;
+}
+
+button {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  background-color: #EFE9DB;
+}
+
+#introDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* Button mechanics */
+#startButton {
+  background: none;
+  border-radius: 6px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  position: relative;
+}
+
+.shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  background: hsl(0deg 0% 0% / 0.25);
+  transform: translateY(2px);
+}
+
+.edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  background: hsl(8, 99%, 35%);
+}
+
+#front {
+  display: block;
+  position: relative;
+  padding: 12px 42px;
+  border-radius: 6px;
+  font-size: 1.25rem;
+  color: white;
+  background: hsl(8, 99%, 65%);
+  transform: translateY(-4px);
+}
+#startButton:hover #front {
+  transform: translateY(-6px);
+}
+#startButton:hover .shadow {
+  transform: translateY(4px);
+}
+#startButton:active #front {
+  transform: translateY(-2px);
+}
+#startButton:active .shadow {
+  transform: translateY(1px);
+}
+
+#startButton:focus:not(:focus-visible) {
+  outline: none;
+}
+
+hr {
+  width: 90%;
+}
+
+#blackDiv {
+  background-color: black;
+  height: 90%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#blackDiv #storyText, #blackDiv #startButton {
+  color: white;
+}
+
+#blackDiv #storyText {
+  padding: 10px 40px;
+}
+
+#footerText {
+  padding: 10px;
+}
+
+/* Old CSS */
 /* html, body {
   height: 100%;
 } */
@@ -9,7 +130,7 @@ html {
   display: table;
   margin: auto;
 } */
-
+/* 
 body {
   display: table-cell;
   vertical-align: middle;
@@ -63,4 +184,4 @@ button {
   span {
     font-size: larger;
     color: #003049;
-  }
+  } */

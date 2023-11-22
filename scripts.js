@@ -6,6 +6,8 @@ function imageReplace(imageVar, imageSrc, imageAlt) {
     imageVar.src = imageSrc;
     imageVar.alt = imageAlt;
 }
+
+
 // create event listener to start game
 document.addEventListener("DOMContentLoaded", function() {
     // Gets ID's of existing elements on the page
@@ -13,24 +15,34 @@ document.addEventListener("DOMContentLoaded", function() {
     const titleText = document.getElementById("titleText");
     const storyText = document.getElementById("storyText");
     const startButton = document.getElementById("startButton");
+    const firstPageDivider = document.getElementById("firstPageDivider");
+    const introDiv = document.getElementById("introDiv");
+    const frontButton = document.getElementById("front");
 
     startButton.addEventListener("click", function() {
         if (currentStage === 1) {
-            titleText.remove();
-            storyText.textContent = "The year is 1933, in the frosty grip of a Soviet winter, desperation and hunger clawed at the hearts of the people. You, a humble soul driven by the instinct to protect your family, found yourself on the wrong side of the law after stealing a single loaf of bread from the desolate bakery. The Soviet famine had spared no one, and your family's survival depended on that stolen sustenance.";
-            imageReplace(stageImg, "images/stage-one-img.jpeg", "An illustration of people pleading for bread from a stand in Russia");
-            startButton.textContent = "Next";
+            const blackDiv = document.createElement("div");
+            blackDiv.id = "blackDiv";
+            const footerHr = document.createElement("hr");
+            const footerText = document.createElement("span");
+            footerText.id = "footerText";
+            footerText.textContent = "A rock, paper, scissors spin-off";
+            introDiv.appendChild(blackDiv);
+            introDiv.appendChild(footerHr);
+            introDiv.appendChild(footerText);
+            blackDiv.appendChild(storyText);
+            blackDiv.appendChild(startButton);
+            storyText.textContent = "In the frosty grip of a Soviet winter, desperation and hunger clawed at the hearts of the people." + "\n\n" + "You, a humble soul driven by the instinct to protect your family, found yourself on the wrong side of the law after stealing a single loaf of bread from the local bakery. ";
+            frontButton.textContent = "Next";
             currentStage++;
             console.log(currentStage);
         } else if (currentStage === 2) {
             storyText.textContent = "Enter the stage, a local corrupt police officer, a man who reveled in the misfortune of others. He caught you red-handed, with the stolen bread as damning evidence. Instead of turning you in immediately, he presented a sinister proposition. 'Beat me at a game of Rock, Paper, Scissors, and I'll turn a blind eye to your transgressions. Fail, and you and your family face the firing squad.'";
-            imageReplace(stageImg, "images/stage-two-img.jpeg", "A illustration of an angry Russian officer.");
             currentStage++;
             console.log(currentStage);
         } else if (currentStage === 3) {
             startButton.textContent = "Begin";
             storyText.textContent = "The chilling wind whipped through the desolate streets as you reluctantly agreed, knowing that the stakes were life and death. The corrupt officer grinned, the icy glint in his eye reflecting the stark reality of your situation.";
-            imageReplace(stageImg, "images/stage-three-img.jpeg", "A illustration of two hands aggressively interlocking on a red background.");
             currentStage++;
             console.log(currentStage);
         } else if (currentStage === 4) {
