@@ -22,6 +22,10 @@ h1 {
   padding-top: 10px;
 }
 
+span {
+  color: white;
+}
+
 button {
   font-family: 'Roboto Mono', monospace;
   font-weight: 700;
@@ -138,7 +142,21 @@ hr {
   transform: rotate(5deg);
 }
 
+#playerChoiceDiv, #computerChoiceDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+#playerSelectionImage, #computerSelectionImage {
+  width: 130px;
+  padding: 25px;
+  border-radius: 18%;
+}
+
+#footerText {
+  color: black;
+}
 
 
 /* Old CSS */

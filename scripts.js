@@ -1,4 +1,7 @@
 // Note To Do list
+
+// Fix nextround button
+// Update final winning message
 // Organise styles in CSS. Remove from JS where possible to enable ease of future CSS alterations.
 // Add audio
 // Mobile responsive design (title needs to drop font size)
@@ -15,17 +18,15 @@ function imageReplace(imageVar, imageSrc, imageAlt) {
     imageVar.alt = imageAlt;
 }
 
+const startButton = document.getElementById("startButton");
+const frontButton = document.getElementById("front");
 
 // create event listener to start game
 document.addEventListener("DOMContentLoaded", function() {
     // Gets ID's of existing elements on the page
-    const stageImg = document.getElementById("stageImg");
-    const titleText = document.getElementById("titleText");
     const storyText = document.getElementById("storyText");
-    const startButton = document.getElementById("startButton");
-    const firstPageDivider = document.getElementById("firstPageDivider");
+    // const startButton = document.getElementById("startButton");
     const introDiv = document.getElementById("introDiv");
-    const frontButton = document.getElementById("front");
 
     startButton.addEventListener("click", function() {
         if (currentStage === 1) {
@@ -55,7 +56,8 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(currentStage);
         } else if (currentStage === 4) {
             storyText.remove();
-            startButton.remove();
+            // startButton.remove();
+            startButton.style.visibility = 'hidden';
             const displayRound = document.createElement("h2");
             const choiceText = document.createElement("span");
             const resultsText = document.createElement("span");
@@ -65,7 +67,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const imageDiv = document.createElement("div");
             
             imageDiv.id = "imageDiv";
-            displayRound.textContent = "Round " + (roundNumber + 1);
+            choiceText.id = "choiceText";
+            displayRound.id = "displayRound";
+            displayRound.textContent = "Round " + (roundNumber);
             choiceText.textContent = "Make your choice.";
             displayRound.style.color = "#EFE9DB";
             choiceText.style.color = "#EFE9DB";
@@ -89,12 +93,51 @@ document.addEventListener("DOMContentLoaded", function() {
 }
 )
 
+function hideMultiElements(...elements) {
+    if (elements.length === 3) {
+        const [element1, element2, element3] = elements;
+        const element1Var = document.getElementById(element1);
+        const element2Var = document.getElementById(element2);
+        const element3Var = document.getElementById(element3); 
+        element1Var.style.display = "none";
+        element2Var.style.display = "none";
+        element3Var.style.display = "none";
+    }
+    else if (elements.length === 2) {
+        const [element1, element2] = elements;
+        const element1Var = document.getElementById(element1);
+        const element2Var = document.getElementById(element2); 
+        element1Var.style.display = "none";
+        element2Var.style.display = "none";
+    }
+}
+
+function showMultiElements(...elements) {
+    if (elements.length === 3) {
+        const [element1, element2, element3] = elements;
+        const element4Var = document.getElementById(element1);
+        const element5Var = document.getElementById(element2);
+        const element6Var = document.getElementById(element3); 
+        element4Var.style.display = "block";
+        element5Var.style.display = "block";
+        element6Var.style.display = "block";
+    } else if (elements.length === 2) {
+        const [element1, element2] = elements;
+        const element4Var = document.getElementById(element1);
+        const element5Var = document.getElementById(element2); 
+        element4Var.style.display = "block";
+        element5Var.style.display = "block";
+    }
+}
+
+
 // Code for game mechanics
 // Counter for score 
 let playerScore = 0;
 let computerScore = 0;
-let roundNumber = 0;
+let roundNumber = 1;
 let playerSelection;
+let playerName, computerName;
         // Function 1 – getComputerChoice
         // Define function called getComputerChoice
 function getComputerChoice() {
@@ -111,11 +154,132 @@ function getComputerChoice() {
         }
         // Function 2 — playRound
         // Define function called playRound
-function playRound(playerSelection, computerSelection) { 
+function playRound(playerSelection, computerSelection) {
+    const imageDiv = document.getElementById("imageDiv");
+    const blackDiv = document.getElementById("blackDiv");
+    const rockPic = document.getElementById("rock-pic");
+    const paperPic = document.getElementById("paper-pic");
+    const scissorsPic = document.getElementById("scissors-pic"); 
+    const choiceText = document.getElementById("choiceText");
+
+    hideMultiElements("rock-pic", "paper-pic", "scissors-pic");
+
+    choiceText.style.display = 'none';
+    const playerChoiceDiv = document.createElement("div");
+    const computerChoiceDiv = document.createElement("div");
+
+    const playerSelectionImage = document.createElement("img");
+    const computerSelectionImage = document.createElement("img");
+    playerSelectionImage.id = "playerSelectionImage";
+    computerSelectionImage.id = "computerSelectionImage";
+
+    playerName = document.createElement("span");
+    computerName = document.createElement("span");
+    playerName.id = "playerName";
+    computerName.id = "computerName";
+        
+    playerChoiceDiv.id = "playerChoiceDiv";
+    computerChoiceDiv.id = "computerChoiceDiv";
+    playerName.textContent = "Player";
+    computerName.textContent = "Raskalov";
+    imageDiv.append(playerChoiceDiv, computerChoiceDiv);
+    playerChoiceDiv.append(playerName, playerSelectionImage);
+    computerChoiceDiv.append(computerName, computerSelectionImage);
+
+    // if (roundNumber === 1) {
+    //     const playerChoiceDiv = document.createElement("div");
+    //     const computerChoiceDiv = document.createElement("div");
+
+    //     const playerSelectionImage = document.createElement("img");
+    //     const computerSelectionImage = document.createElement("img");
+    //     playerSelectionImage.id = "playerSelectionImage";
+    //     computerSelectionImage.id = "computerSelectionImage";
+
+    //     playerName = document.createElement("span");
+    //     computerName = document.createElement("span");
+    //     playerName.id = "playerName";
+    //     computerName.id = "computerName";
+        
+    //     playerChoiceDiv.id = "playerChoiceDiv";
+    //     computerChoiceDiv.id = "computerChoiceDiv";
+    //     playerName.textContent = "Player";
+    //     computerName.textContent = "Raskalov";
+    //     imageDiv.append(playerChoiceDiv, computerChoiceDiv);
+    //     playerChoiceDiv.append(playerName, playerSelectionImage);
+    //     computerChoiceDiv.append(computerName, computerSelectionImage);
+    // } else {
+    //     playerName.style.display = 'block'; 
+    //     computerName.style.display = 'block';
+    //     showMultiElements(playerSelectionImage, computerSelectionImage);
+    // }
+
+    const nextRoundButton = document.createElement("button");
+    blackDiv.append(nextRoundButton);
+
+    if (roundNumber === 5) {
+        nextRoundButton.textContent = "Play Again";
+    }
+    else {
+        nextRoundButton.textContent = "Next Round";
+    }
+
+    if (playerSelection === "ROCK") {
+        imageReplace(playerSelectionImage, "images/rock-cropped.png", "A red stylised picture of a rock");
+    } else if (playerSelection === "PAPER") {
+        imageReplace(playerSelectionImage, "images/paper-cropped.png", "A red stylised picture of a piece of paper");
+    } else if (playerSelection === "SCISSORS") {
+        imageReplace(playerSelectionImage, "images/scissors-cropped.png", "A red stylised picture of a pair of scissors");
+    }
+
+    if (computerSelection === "ROCK") {
+        imageReplace(computerSelectionImage, "images/rock-cropped.png", "A red stylised picture of a rock");
+    } else if (computerSelection === "PAPER") {
+        imageReplace(computerSelectionImage, "images/paper-cropped.png", "A red stylised picture of a piece of paper");
+    } else if (computerSelection === "SCISSORS") {
+        imageReplace(computerSelectionImage, "images/scissors-cropped.png", "A red stylised picture of a pair of scissors");
+    }
+
+    // nextRound button function that resets the game if 5 rounds have been played
+    nextRoundButton.addEventListener("click", function() {
+        if (roundNumber === 6) {
+            roundNumber = 1;
+            playerScore = 0;
+            computerScore = 0;
+            playerChoiceDiv.remove();
+            computerChoiceDiv.remove();
+            playerName.remove();
+            computerName.remove();
+            playerSelectionImage.remove();
+            computerSelectionImage.remove();
+        }
+        displayRound.textContent = "Round " + roundNumber;
+        // rockPic.style.display = 'block';
+        // imageReplace(paperPic, "images/paper-cropped.png", "A red stylised picture of a rock");
+        // imageReplace(scissorsPic, "images/scissors-cropped.png", "A red stylised picture of a pair of scissors");
+        nextRoundButton.style.display = 'none';
+        choiceText.style.display = 'block';
+        playerChoiceDiv.remove();
+        computerChoiceDiv.remove();
+        playerChoiceDiv.remove();
+        computerChoiceDiv.remove();
+        playerName.remove();
+        computerName.remove();
+        playerSelectionImage.remove();
+        computerSelectionImage.remove();
+        showMultiElements("rock-pic", "paper-pic", "scissors-pic");
+
+        // playerName = document.getElementById("playerName");
+        // computerName = document.getElementById("computerName");
+        // playerName.style.display = 'none';
+        // computerName.style.display = 'none';
+
+    });
+
             // Compare playerSelection vs computerSelection 
             // If tied, no one wins
     if (playerSelection === computerSelection) {
     document.getElementById("resultsText").textContent = `It is a tie. You ${playerScore} – Officer Raskalov ${computerScore}`
+    
     console.log(`It is a tie. You ${playerScore} – Officer Raskalov ${computerScore}`); 
 
             // Set various different scenarios of player winning and add 1 to score
@@ -131,29 +295,30 @@ function playRound(playerSelection, computerSelection) {
         }   
         } 
 
+
     const roundChoice = document.querySelector('#introDiv');
 
     roundChoice.addEventListener('click', (event) => {
         let target = event.target;
         
-        if (roundNumber < 5) {
+        if (roundNumber < 6) {
         switch(target.id) {
             case 'rock-pic':
                 console.log('Rock was clicked');
                 playRound("ROCK", getComputerChoice())
-                roundNumber++;
+                ++roundNumber;
                 console.log(roundNumber);
                 break;
             case 'paper-pic':
                 console.log('Paper was clicked');
                 playRound("PAPER", getComputerChoice())
-                roundNumber++;
+                ++roundNumber;
                 console.log(roundNumber);
                 break;
             case 'scissors-pic':
                 console.log('Scissors was clicked');
                 playRound("SCISSORS", getComputerChoice())
-                roundNumber++;
+                ++roundNumber;
                 console.log(roundNumber);
                 break;
             }
