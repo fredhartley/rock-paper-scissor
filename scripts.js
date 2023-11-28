@@ -71,10 +71,6 @@ document.addEventListener("DOMContentLoaded", function() {
             displayRound.id = "displayRound";
             displayRound.textContent = "Round " + (roundNumber);
             choiceText.textContent = "Make your choice.";
-            displayRound.style.color = "#EFE9DB";
-            choiceText.style.color = "#EFE9DB";
-            resultsText.style.color = "#EFE9DB"; 
-            resultsText.style.padding = "10px";
             document.body.style.backgroundColor = "#FE674F";
             imageReplace(rockPic, "images/rock-cropped.png", "A red stylised picture of a rock");
             imageReplace(paperPic, "images/paper-cropped.png", "A red stylised picture of a piece of paper");
@@ -85,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
             scissorsPic.id = "scissors-pic";
             resultsText.id = "resultsText";
 
-            blackDiv.append(displayRound,choiceText, resultsText, imageDiv);
+            blackDiv.append(displayRound, resultsText, choiceText, imageDiv);
             imageDiv.append(rockPic, paperPic, scissorsPic);
             currentStage++;
         }
@@ -157,9 +153,9 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     const imageDiv = document.getElementById("imageDiv");
     const blackDiv = document.getElementById("blackDiv");
-    const rockPic = document.getElementById("rock-pic");
-    const paperPic = document.getElementById("paper-pic");
-    const scissorsPic = document.getElementById("scissors-pic"); 
+    // const rockPic = document.getElementById("rock-pic");
+    // const paperPic = document.getElementById("paper-pic");
+    // const scissorsPic = document.getElementById("scissors-pic"); 
     const choiceText = document.getElementById("choiceText");
 
     hideMultiElements("rock-pic", "paper-pic", "scissors-pic");
@@ -180,47 +176,38 @@ function playRound(playerSelection, computerSelection) {
         
     playerChoiceDiv.id = "playerChoiceDiv";
     computerChoiceDiv.id = "computerChoiceDiv";
-    playerName.textContent = "Player";
+    playerName.textContent = "You";
     computerName.textContent = "Raskalov";
     imageDiv.append(playerChoiceDiv, computerChoiceDiv);
     playerChoiceDiv.append(playerName, playerSelectionImage);
     computerChoiceDiv.append(computerName, computerSelectionImage);
 
-    // if (roundNumber === 1) {
-    //     const playerChoiceDiv = document.createElement("div");
-    //     const computerChoiceDiv = document.createElement("div");
-
-    //     const playerSelectionImage = document.createElement("img");
-    //     const computerSelectionImage = document.createElement("img");
-    //     playerSelectionImage.id = "playerSelectionImage";
-    //     computerSelectionImage.id = "computerSelectionImage";
-
-    //     playerName = document.createElement("span");
-    //     computerName = document.createElement("span");
-    //     playerName.id = "playerName";
-    //     computerName.id = "computerName";
-        
-    //     playerChoiceDiv.id = "playerChoiceDiv";
-    //     computerChoiceDiv.id = "computerChoiceDiv";
-    //     playerName.textContent = "Player";
-    //     computerName.textContent = "Raskalov";
-    //     imageDiv.append(playerChoiceDiv, computerChoiceDiv);
-    //     playerChoiceDiv.append(playerName, playerSelectionImage);
-    //     computerChoiceDiv.append(computerName, computerSelectionImage);
-    // } else {
-    //     playerName.style.display = 'block'; 
-    //     computerName.style.display = 'block';
-    //     showMultiElements(playerSelectionImage, computerSelectionImage);
-    // }
-
     const nextRoundButton = document.createElement("button");
+    nextRoundButton.id = "nextRoundButton";
+    const nextRoundButtonShadow = document.createElement("span");
+    const nextRoundButtonEdge = document.createElement("span");
+    const nextRoundButtonFront = document.createElement("span");
+    nextRoundButtonShadow.setAttribute("class", "shadow");
+    nextRoundButtonEdge.setAttribute("class", "edge");
+    nextRoundButtonFront.setAttribute("id", "front");
+    nextRoundButton.append(nextRoundButtonShadow, nextRoundButtonEdge, nextRoundButtonFront);
     blackDiv.append(nextRoundButton);
 
     if (roundNumber === 5) {
-        nextRoundButton.textContent = "Play Again";
+        nextRoundButtonFront.textContent = "Play Again";
+        choiceText.style.display = 'block';
+        if (playerScore > computerScore) {
+            choiceText.textContent = "'I'll be watching you.' snarls Officer Raskalov as he storms out the room.";
+        }
+        else if (playerScore < computerScore) {
+            choiceText.textContent = "'HAHA! Face the wall!' Officer Raskalov announces gleefully.";
+        }
+        else {
+            choiceText.textContent = "'Again!' screams Officer Raskalov.";
+        }
     }
     else {
-        nextRoundButton.textContent = "Next Round";
+        nextRoundButtonFront.textContent = "Next Round";
     }
 
     if (playerSelection === "ROCK") {
@@ -251,11 +238,10 @@ function playRound(playerSelection, computerSelection) {
             computerName.remove();
             playerSelectionImage.remove();
             computerSelectionImage.remove();
+            choiceText.textContent = "Make your choice.";
         }
         displayRound.textContent = "Round " + roundNumber;
-        // rockPic.style.display = 'block';
-        // imageReplace(paperPic, "images/paper-cropped.png", "A red stylised picture of a rock");
-        // imageReplace(scissorsPic, "images/scissors-cropped.png", "A red stylised picture of a pair of scissors");
+        document.getElementById("resultsText").textContent = `You ${playerScore} - Officer Raskalov ${computerScore}`;
         nextRoundButton.style.display = 'none';
         choiceText.style.display = 'block';
         playerChoiceDiv.remove();
@@ -267,33 +253,35 @@ function playRound(playerSelection, computerSelection) {
         playerSelectionImage.remove();
         computerSelectionImage.remove();
         showMultiElements("rock-pic", "paper-pic", "scissors-pic");
-
-        // playerName = document.getElementById("playerName");
-        // computerName = document.getElementById("computerName");
-        // playerName.style.display = 'none';
-        // computerName.style.display = 'none';
-
     });
 
             // Compare playerSelection vs computerSelection 
             // If tied, no one wins
-    if (playerSelection === computerSelection) {
+    if ((playerSelection === computerSelection) && (roundNumber < 5)) {
     document.getElementById("resultsText").textContent = `It is a tie. You ${playerScore} – Officer Raskalov ${computerScore}`
     
     console.log(`It is a tie. You ${playerScore} – Officer Raskalov ${computerScore}`); 
 
             // Set various different scenarios of player winning and add 1 to score
-    }   else if ((playerSelection === "PAPER" && computerSelection === "ROCK") || 
+    }   else if (((playerSelection === "PAPER" && computerSelection === "ROCK") || 
                 (playerSelection === "ROCK" && computerSelection === "SCISSORS") ||
-                (playerSelection === "SCISSORS" && computerSelection === "PAPER")) {
+                (playerSelection === "SCISSORS" && computerSelection === "PAPER")) && (roundNumber < 5)) {
                 playerScore++;
                 document.getElementById("resultsText").textContent = `You win. You ${playerScore} - Officer Raskalov ${computerScore}`
             // Any other possibility only computer winning so add 1 to score
-    }   else {
+    }   else if (((playerSelection === "PAPER" && computerSelection === "SCISSORS") ||
+                (playerSelection === "ROCK" && computerSelection === "PAPER") ||
+                (playerSelection === "SCISSORS" && computerSelection === "ROCK")) && (roundNumber < 5)) {
                 computerScore++;
                 document.getElementById("resultsText").textContent = `Officer Raskalov wins. You ${playerScore} - Officer Raskalov ${computerScore}`
-        }   
-        } 
+        }   else {
+                document.getElementById("resultsText").textContent = `Final Score: You ${playerScore} - Officer Raskalov ${computerScore}`;
+                resultsText.style.fontWeight = "900";
+                resultsText.style.fontSize = "20px";
+                resultsText.style.padding = "20px";
+                computerChoiceDiv.remove();
+                playerChoiceDiv.remove();
+        }}
 
 
     const roundChoice = document.querySelector('#introDiv');
@@ -323,22 +311,4 @@ function playRound(playerSelection, computerSelection) {
                 break;
             }
         }
-        else {
-                // If player's score is bigger, alert "You win"
-            if (playerScore > computerScore) {
-                document.getElementById("resultsText").textContent = `Final Score: You ${playerScore} - Officer Raskalov ${computerScore}. You win.`;
-                document.getElementById("extra-dialogue").textContent = `'I'll be watching you.' snarls Officer Raskalov as he storms out the room.`;
-                // If player's score is smaller, alert "You lose"
-            } else if (playerScore < computerScore) {
-                document.getElementById("resultsText").textContent = `Final Score: You ${playerScore} - Officer Raskalov ${computerScore}. You lose...`;
-                document.getElementById("extra-dialogue").textContent = `'HAHA! Face the wall!' Officer Raskalov sadistically announces.`;
-                // Anything else has to be a tie
-            } else {
-                document.getElementById("resultsText").textContent = `Final Score: You ${playerScore} - Officer Raskalov ${computerScore}. It's a tie.`;
-                document.getElementById("extra-dialogue").textContent = `'Again!' screams Officer Raskalov.`;
-                playerScore = 0;
-                computerScore = 0;
-                roundNumber = 0;
-                }
-            }
         });

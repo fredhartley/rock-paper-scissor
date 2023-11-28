@@ -22,8 +22,8 @@ h1 {
   padding-top: 10px;
 }
 
-span {
-  color: white;
+span, h2 {
+  color: #EFE9DB;
 }
 
 button {
@@ -41,7 +41,7 @@ button {
 }
 
 /* Button mechanics */
-#startButton {
+#startButton, #nextRoundButton {
   background: none;
   border-radius: 6px;
   border: none;
@@ -49,6 +49,10 @@ button {
   cursor: pointer;
   outline-offset: 4px;
   position: relative;
+}
+
+#nextRoundButton {
+  margin : 20px;
 }
 
 .shadow {
@@ -82,20 +86,20 @@ button {
   background: hsl(8, 99%, 65%);
   transform: translateY(-4px);
 }
-#startButton:hover #front {
+#startButton:hover #front, #nextRoundButton:hover #front {
   transform: translateY(-6px);
 }
-#startButton:hover .shadow {
+#startButton:hover .shadow, #nextRoundButton:hover .shadow {
   transform: translateY(4px);
 }
-#startButton:active #front {
+#startButton:active #front, #nextRoundButton:active #front {
   transform: translateY(-2px);
 }
-#startButton:active .shadow {
+#startButton:active .shadow, #nextRoundButton:active #front {
   transform: translateY(1px);
 }
 
-#startButton:focus:not(:focus-visible) {
+#startButton:focus:not(:focus-visible), #nextRoundButton:focus:not(:focus-visible) {
   outline: none;
 }
 
@@ -158,69 +162,12 @@ hr {
   color: black;
 }
 
-
-/* Old CSS */
-/* html, body {
-  height: 100%;
-} */
-/* 
-html {
-  
-  display: table;
-  margin: auto;
-} */
-/* 
-body {
-  display: table-cell;
-  vertical-align: middle;
+#resultsText {
+  font-weight: 700;
+  font-size: 1.25em;
+  margin-bottom: 12px;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  }
-  
-#introDiv {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 10px;
-  text-align: center;
-  min-width: 500px;
-  max-width: 560px;
+#choiceText {
+  margin-bottom: 20px;
 }
-
-  h1 {
-    color: #003049;
-    font-weight: 900;
-  }
-
-button {
-  font-family: 'Kanit', sans-serif;
-  font-size: 1.2em;
-}
-
-#rock-pic, #paper-pic, #scissors-pic {
-    transition: transform .5s ease-in-out;
-    width: 100px;
-    padding: 25px;
-    border-radius: 18%;
-  }
-  #rock-pic:hover,  #paper-pic:hover, #scissors-pic:hover {
-    transform: rotate(5deg);
-  }
-
-  #stageImg {
-    width: 300px;
-    padding: 15px;
-  }
-
-  p {
-    font-size: large;
-    color: #003049;
-  }
-
-  span {
-    font-size: larger;
-    color: #003049;
-  } */
