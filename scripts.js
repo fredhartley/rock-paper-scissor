@@ -197,10 +197,10 @@ function playRound(playerSelection, computerSelection) {
         nextRoundButtonFront.textContent = "Play Again";
         choiceText.style.display = 'block';
         if (playerScore > computerScore) {
-            choiceText.textContent = "'I'll be watching you.' snarls Officer Raskalov as he storms out the room.";
+            choiceText.textContent = "'I'll be watching you.' snarls \nOfficer Raskalov as he storms out the room.";
         }
         else if (playerScore < computerScore) {
-            choiceText.textContent = "'HAHA! Face the wall!' Officer Raskalov announces gleefully.";
+            choiceText.textContent = "'HAHA! Face the wall!' Officer \nRaskalov announces gleefully.";
         }
         else {
             choiceText.textContent = "'Again!' screams Officer Raskalov.";
@@ -258,7 +258,7 @@ function playRound(playerSelection, computerSelection) {
             // Compare playerSelection vs computerSelection 
             // If tied, no one wins
     if ((playerSelection === computerSelection) && (roundNumber < 5)) {
-    document.getElementById("resultsText").textContent = `It is a tie. You ${playerScore} – Officer Raskalov ${computerScore}`
+    document.getElementById("resultsText").textContent = `It is a tie. \nYou ${playerScore} – Raskalov ${computerScore}`
     
     console.log(`It is a tie. You ${playerScore} – Officer Raskalov ${computerScore}`); 
 
@@ -267,18 +267,15 @@ function playRound(playerSelection, computerSelection) {
                 (playerSelection === "ROCK" && computerSelection === "SCISSORS") ||
                 (playerSelection === "SCISSORS" && computerSelection === "PAPER")) && (roundNumber < 5)) {
                 playerScore++;
-                document.getElementById("resultsText").textContent = `You win. You ${playerScore} - Officer Raskalov ${computerScore}`
+                document.getElementById("resultsText").textContent = `You win. \nYou ${playerScore} - Raskalov ${computerScore}`
             // Any other possibility only computer winning so add 1 to score
     }   else if (((playerSelection === "PAPER" && computerSelection === "SCISSORS") ||
                 (playerSelection === "ROCK" && computerSelection === "PAPER") ||
                 (playerSelection === "SCISSORS" && computerSelection === "ROCK")) && (roundNumber < 5)) {
                 computerScore++;
-                document.getElementById("resultsText").textContent = `Officer Raskalov wins. You ${playerScore} - Officer Raskalov ${computerScore}`
+                document.getElementById("resultsText").textContent = `Officer Raskalov wins. \nYou ${playerScore} - Raskalov ${computerScore}`
         }   else {
-                document.getElementById("resultsText").textContent = `Final Score: You ${playerScore} - Officer Raskalov ${computerScore}`;
-                resultsText.style.fontWeight = "900";
-                resultsText.style.fontSize = "20px";
-                resultsText.style.padding = "20px";
+                document.getElementById("resultsText").textContent = `Final Score: You ${playerScore} - Raskalov ${computerScore}`;
                 computerChoiceDiv.remove();
                 playerChoiceDiv.remove();
         }}
