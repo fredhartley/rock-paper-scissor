@@ -198,6 +198,12 @@ hr {
     margin-bottom: 12px;
   }
 
+  #choiceText {
+    white-space: pre-wrap;
+    text-align: center;
+  }
+
+
   #blackDiv #storyText {
     padding: 10px 150px;
     margin-bottom: 40px;
@@ -277,11 +283,6 @@ hr {
 
   #blackDiv #storyText {
     padding: 10px 60px;
-  }
-
-  #choiceText {
-    white-space: pre-wrap;
-    text-align: center;
   }
 
   #front {

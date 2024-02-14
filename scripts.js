@@ -1,13 +1,3 @@
-// Note To Do list
-
-// Fix nextround button
-// Update final winning message
-// Organise styles in CSS. Remove from JS where possible to enable ease of future CSS alterations.
-// Add audio
-// Mobile responsive design (title needs to drop font size)
-// More care with how everything is styled. Padding, flex-shrink etc.
-// Use more precise and industry standard naming conventions
-
 
 // create variable for current stage
 let currentStage = 1;
@@ -25,7 +15,6 @@ const frontButton = document.getElementById("front");
 document.addEventListener("DOMContentLoaded", function() {
     // Gets ID's of existing elements on the page
     const storyText = document.getElementById("storyText");
-    // const startButton = document.getElementById("startButton");
     const introDiv = document.getElementById("introDiv");
 
     startButton.addEventListener("click", function() {
@@ -126,21 +115,19 @@ function showMultiElements(...elements) {
     }
 }
 
-
-// Code for game mechanics
-// Counter for score 
+// Declarations for game mechanics 
 let playerScore = 0;
 let computerScore = 0;
 let roundNumber = 1;
 let playerSelection;
 let playerName, computerName;
-        // Function 1 – getComputerChoice
-        // Define function called getComputerChoice
+
+// Define function called getComputerChoice
 function getComputerChoice() {
         // Create a int variable to store the choice with an initVal of null 
         // Randomly generate a whole number between 1 and 3 
     let randomNumber = Math.floor((Math.random() * 3) + 1);
-        // Create a conditional statement — if 1, 2 and 3 assign respectively to "ROCK", "PAPER" or "SCISSORS"
+        // 1, 2 and 3 assign respectively to "ROCK", "PAPER" or "SCISSORS"
     if (randomNumber === 1) {
         return "ROCK";
     } else if (randomNumber === 2) {
@@ -148,14 +135,11 @@ function getComputerChoice() {
     } else
         return "SCISSORS";
         }
-        // Function 2 — playRound
-        // Define function called playRound
+    
+// Define function called playRound
 function playRound(playerSelection, computerSelection) {
     const imageDiv = document.getElementById("imageDiv");
     const blackDiv = document.getElementById("blackDiv");
-    // const rockPic = document.getElementById("rock-pic");
-    // const paperPic = document.getElementById("paper-pic");
-    // const scissorsPic = document.getElementById("scissors-pic"); 
     const choiceText = document.getElementById("choiceText");
 
     hideMultiElements("rock-pic", "paper-pic", "scissors-pic");
@@ -268,7 +252,7 @@ function playRound(playerSelection, computerSelection) {
                 (playerSelection === "SCISSORS" && computerSelection === "PAPER")) && (roundNumber < 5)) {
                 playerScore++;
                 document.getElementById("resultsText").textContent = `You win. \nYou ${playerScore} - Raskalov ${computerScore}`
-            // Any other possibility only computer winning so add 1 to score
+            // Any other possibility only computer winning and add 1 to score
     }   else if (((playerSelection === "PAPER" && computerSelection === "SCISSORS") ||
                 (playerSelection === "ROCK" && computerSelection === "PAPER") ||
                 (playerSelection === "SCISSORS" && computerSelection === "ROCK")) && (roundNumber < 5)) {
@@ -279,7 +263,6 @@ function playRound(playerSelection, computerSelection) {
                 computerChoiceDiv.remove();
                 playerChoiceDiv.remove();
         }}
-
 
     const roundChoice = document.querySelector('#introDiv');
 
