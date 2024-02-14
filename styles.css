@@ -173,6 +173,7 @@ hr {
   margin-bottom: 20px;
 }
 
+/* Media queries */
 @media screen and (max-width: 1080px) {
 
   h1 {

@@ -2,21 +2,29 @@
 // create variable for current stage
 let currentStage = 1;
 
-// create function to replace image src and alt
+const startButton = document.getElementById("startButton");
+const frontButton = document.getElementById("front");
+
+// declarations for game mechanics 
+let playerScore = 0;
+let computerScore = 0;
+let roundNumber = 1;
+let playerSelection;
+let playerName, computerName;
+
+// function to replace image src and alt
 function imageReplace(imageVar, imageSrc, imageAlt) {
     imageVar.src = imageSrc;
     imageVar.alt = imageAlt;
 }
 
-const startButton = document.getElementById("startButton");
-const frontButton = document.getElementById("front");
-
-// create event listener to start game
+// event listener to start game
 document.addEventListener("DOMContentLoaded", function() {
     // Gets ID's of existing elements on the page
     const storyText = document.getElementById("storyText");
     const introDiv = document.getElementById("introDiv");
 
+    // story stages loaded in DOM from start to begin game
     startButton.addEventListener("click", function() {
         if (currentStage === 1) {
             const blackDiv = document.createElement("div");
@@ -78,6 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
 }
 )
 
+// Function used to hide weapon choices
 function hideMultiElements(...elements) {
     if (elements.length === 3) {
         const [element1, element2, element3] = elements;
@@ -97,6 +106,7 @@ function hideMultiElements(...elements) {
     }
 }
 
+/// Function used to show weapon choices
 function showMultiElements(...elements) {
     if (elements.length === 3) {
         const [element1, element2, element3] = elements;
@@ -115,14 +125,7 @@ function showMultiElements(...elements) {
     }
 }
 
-// Declarations for game mechanics 
-let playerScore = 0;
-let computerScore = 0;
-let roundNumber = 1;
-let playerSelection;
-let playerName, computerName;
-
-// Define function called getComputerChoice
+// function to generate computer's answer randomly 
 function getComputerChoice() {
         // Create a int variable to store the choice with an initVal of null 
         // Randomly generate a whole number between 1 and 3 
@@ -136,7 +139,7 @@ function getComputerChoice() {
         return "SCISSORS";
         }
     
-// Define function called playRound
+// Monster function that outlines the game dynamics
 function playRound(playerSelection, computerSelection) {
     const imageDiv = document.getElementById("imageDiv");
     const blackDiv = document.getElementById("blackDiv");
@@ -177,6 +180,7 @@ function playRound(playerSelection, computerSelection) {
     nextRoundButton.append(nextRoundButtonShadow, nextRoundButtonEdge, nextRoundButtonFront);
     blackDiv.append(nextRoundButton);
 
+    // checks if final round has been hit
     if (roundNumber === 5) {
         nextRoundButtonFront.textContent = "Play Again";
         choiceText.style.display = 'block';
@@ -194,6 +198,7 @@ function playRound(playerSelection, computerSelection) {
         nextRoundButtonFront.textContent = "Next Round";
     }
 
+    // displays users weapon choice
     if (playerSelection === "ROCK") {
         imageReplace(playerSelectionImage, "images/rock-cropped.png", "A red stylised picture of a rock");
     } else if (playerSelection === "PAPER") {
@@ -202,6 +207,7 @@ function playRound(playerSelection, computerSelection) {
         imageReplace(playerSelectionImage, "images/scissors-cropped.png", "A red stylised picture of a pair of scissors");
     }
 
+    // displays computers weapon choice
     if (computerSelection === "ROCK") {
         imageReplace(computerSelectionImage, "images/rock-cropped.png", "A red stylised picture of a rock");
     } else if (computerSelection === "PAPER") {
@@ -210,7 +216,7 @@ function playRound(playerSelection, computerSelection) {
         imageReplace(computerSelectionImage, "images/scissors-cropped.png", "A red stylised picture of a pair of scissors");
     }
 
-    // nextRound button function that resets the game if 5 rounds have been played
+    // function that resets the game if 5 rounds have been played
     nextRoundButton.addEventListener("click", function() {
         if (roundNumber === 6) {
             roundNumber = 1;
@@ -239,7 +245,7 @@ function playRound(playerSelection, computerSelection) {
         showMultiElements("rock-pic", "paper-pic", "scissors-pic");
     });
 
-            // Compare playerSelection vs computerSelection 
+    // compares playerSelection vs computerSelection and attributes respective score
             // If tied, no one wins
     if ((playerSelection === computerSelection) && (roundNumber < 5)) {
     document.getElementById("resultsText").textContent = `It is a tie. \nYou ${playerScore} – Raskalov ${computerScore}`
